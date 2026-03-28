@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptMaster — 200+ Prompts de ChatGPT que Generan Resultados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #05080F;
+      --surface:   #0A1020;
+      --surface2:  #0D1628;
+      --teal:      #00D4B8;
+      --sky:       #38BDF8;
+      --teal-dark: #0A9A87;
+      --text:      #E2E8F0;
+      --muted:     #64748B;
+      --dim:       #94A3B8;
+      --border:    rgba(0,212,184,0.15);
+      --glow:      rgba(0,212,184,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Gradient text ── */
+    .gt {
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-block;
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--teal-dark), #0284C7);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.03em;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 0 36px rgba(0,212,184,0.28), 0 8px 24px rgba(0,0,0,0.4);
+      transition: transform 0.18s, box-shadow 0.18s;
+      text-align: center;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 52px rgba(0,212,184,0.42), 0 12px 32px rgba(0,0,0,0.5);
+    }
+
+    .btn-nav {
+      display: inline-block;
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--teal-dark), #0284C7);
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+      border-radius: 50px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 0 16px rgba(0,212,184,0.3);
+      transition: box-shadow 0.18s, transform 0.18s;
+    }
+    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 0 24px rgba(0,212,184,0.45); }
+
+    /* ── Urgency bar ── */
+    #urgency-bar {
+      background: linear-gradient(90deg, #087B6F, #0369A1);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #fff;
+    }
+    #urgency-bar span.timer {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5,8,15,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Section wrapper ── */
+    .section { padding: 72px 48px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 72px 48px 60px;
+      background:
+        radial-gradient(ellipse 55% 65% at 75% 55%, rgba(0,212,184,0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 20% 40%, rgba(56,189,248,0.05) 0%, transparent 60%);
+    }
+    #hero .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(0,212,184,0.4);
+      border-radius: 50px;
+      padding: 5px 16px;
+      margin-bottom: 22px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(38px, 4.5vw, 62px);
+      line-height: 1.0;
+      letter-spacing: 0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      color: var(--dim);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 400;
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 32px;
+    }
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: #CBD5E1;
+      font-weight: 500;
+    }
+    .checklist li .icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-dark), #0284C7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    /* ── Price card ── */
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .price-original {
+      color: var(--muted);
+      text-decoration: line-through;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .price-main {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .price-badge {
+      background: linear-gradient(135deg, var(--teal-dark), #0284C7);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .trust-item { font-size: 12px; color: var(--muted); }
+
+    /* ── Book visual ── */
+    .book-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: floatY 5s ease-in-out infinite;
+      filter: drop-shadow(0 0 40px rgba(0,212,184,0.22)) drop-shadow(0 20px 50px rgba(0,0,0,0.7));
+    }
+    .book-wrap img {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      display: block;
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    /* ── Divider line ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Section headings ── */
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(26px, 3vw, 40px);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--dim);
+      font-size: 15px;
+      margin-bottom: 44px;
+    }
+
+    /* ── Categories grid ── */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .cat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 10px;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cat-card:hover {
+      border-color: rgba(0,212,184,0.4);
+      transform: translateY(-3px);
+    }
+    .cat-emoji { font-size: 26px; margin-bottom: 8px; }
+    .cat-name { font-size: 12px; font-weight: 600; margin-bottom: 5px; color: var(--text); }
+    .cat-count { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.05em; }
+
+    /* ── Testimonials ── */
+    #testimonials { background: var(--surface2); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .tcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .tcard:hover { border-color: rgba(0,212,184,0.35); }
+    .stars { color: #F59E0B; font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+    .tcard p { color: var(--dim); font-size: 14px; line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .tauthor { display: flex; align-items: center; gap: 10px; }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-dark), #0284C7);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px; flex-shrink: 0;
+    }
+    .aname { font-size: 13px; font-weight: 700; }
+    .arole { font-size: 11px; color: var(--muted); }
+
+    /* ── Final CTA section ── */
+    #final-cta {
+      text-align: center;
+      background: linear-gradient(180deg, transparent, rgba(0,212,184,0.04) 50%, transparent);
+    }
+    .cta-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      text-align: center;
+    }
+    footer .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    footer p { color: var(--muted); font-size: 12px; }
+    footer a { color: var(--muted); transition: color 0.2s; }
+    footer a:hover { color: var(--teal); }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.65} }
+
+    @media (max-width: 900px) {
+      nav { padding: 14px 24px; }
+      #hero { padding: 48px 24px; }
+      #hero .inner { grid-template-columns: 1fr; gap: 40px; }
+      .book-wrap { order: -1; }
+      .section { padding: 52px 24px; }
+      .categories { grid-template-columns: repeat(3, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Urgency Bar -->
+  <div id="urgency-bar">
+    🔥 Oferta por tiempo limitado — termina en: <span class="timer" id="countdown">23:47:59</span> &nbsp;·&nbsp; ¡Solo <strong>$10</strong> hoy, luego $97!
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <span class="logo gt">PromptMaster</span>
+    <a href="https://pay.hotmart.com/H105120193G?bid=1774717210699" target="_blank" rel="noopener" class="btn-nav">Obtener por $10 →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="inner">
+      <!-- Left: copy -->
+      <div>
+        <div class="badge">✦ Más de 500 compradores satisfechos</div>
+        <h1>El Único eBook de<br>Prompts de ChatGPT<br>que <span class="gt">Realmente Necesitas</span></h1>
+        <p class="hero-sub">
+          Desbloquea todo el potencial de ChatGPT con los mejores prompts. Ahorra tiempo, mejora tu productividad y lleva tus proyectos al siguiente nivel.
+        </p>
+        <ul class="checklist">
+          <li><span class="icon">✓</span>Acceso instantáneo al eBook completo en PDF</li>
+          <li><span class="icon">✓</span>Más de 250 prompts categorizados y listos para usar</li>
+          <li><span class="icon">✓</span>Actualizaciones gratuitas de por vida</li>
+          <li><span class="icon">✓</span>Garantía de satisfacción de 30 días</li>
+        </ul>
+
+        <!-- Price card -->
+        <div id="cta" class="price-card">
+          <div class="price-row">
+            <span class="price-original">$97</span>
+            <span class="price-main gt">$10</span>
+            <span class="price-badge">−90% HOY</span>
+          </div>
+          <a href="https://pay.hotmart.com/H105120193G?bid=1774717210699" target="_blank" rel="noopener" class="btn-primary">🚀 QUIERO MI EBOOK AHORA</a>
+          <div class="trust-row">
+            <span class="trust-item">🔒 Pago 100% seguro</span>
+            <span class="trust-item">📦 Entrega inmediata</span>
+            <span class="trust-item">↩️ Garantía 30 días</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: book image -->
+      <div class="book-wrap">
+        <img src="ebook-cover.png" alt="eBook: 200+ Prompts de ChatGPT que Generan Resultados">
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="container">
+      <h2 class="section-title">6 Categorías de <span class="gt">Prompts Profesionales</span></h2>
+      <p class="section-sub">250+ prompts organizados por área, listos para copiar y usar al instante.</p>
+      <div class="categories">
+        <div class="cat-card"><div class="cat-emoji">💼</div><div class="cat-name">Negocios</div><div class="cat-count gt">40+</div></div>
+        <div class="cat-card"><div class="cat-emoji">✍️</div><div class="cat-name">Copywriting</div><div class="cat-count gt">35+</div></div>
+        <div class="cat-card"><div class="cat-emoji">🎨</div><div class="cat-name">Creatividad</div><div class="cat-count gt">30+</div></div>
+        <div class="cat-card"><div class="cat-emoji">📊</div><div class="cat-name">Productividad</div><div class="cat-count gt">50+</div></div>
+        <div class="cat-card"><div class="cat-emoji">📱</div><div class="cat-name">Marketing</div><div class="cat-count gt">55+</div></div>
+        <div class="cat-card"><div class="cat-emoji">🤖</div><div class="cat-name">Programación</div><div class="cat-count gt">40+</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Lo que dicen nuestros <span class="gt">Clientes</span></h2>
+      <p class="section-sub">Resultados reales de personas que ya usan PromptMaster.</p>
+      <div class="testimonials-grid">
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <p>"Triplicé mi productividad en una semana. Los prompts de negocios son una verdadera joya."</p>
+          <div class="tauthor">
+            <div class="avatar">C</div>
+            <div><div class="aname">Carlos M.</div><div class="arole">Emprendedor</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <p>"Nunca pensé que ChatGPT podía hacer tanto. Este eBook lo cambió todo para mí."</p>
+          <div class="tauthor">
+            <div class="avatar">A</div>
+            <div><div class="aname">Ana R.</div><div class="arole">Diseñadora Freelance</div></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <p>"Mis campañas mejoraron drásticamente. La sección de copywriting es increíble."</p>
+          <div class="tauthor">
+            <div class="avatar">M</div>
+            <div><div class="aname">Miguel T.</div><div class="arole">Marketing Manager</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FINAL CTA -->
+  <section class="section" id="final-cta">
+    <div class="container">
+      <h2 class="section-title">Transforma Cómo Usas ChatGPT —<br><span class="gt">Empieza Hoy</span></h2>
+      <p class="section-sub" style="margin-bottom:36px;">Únete a más de 500 personas que ya dominan ChatGPT con estos prompts.</p>
+      <div class="cta-card">
+        <div class="price-row" style="justify-content:center;margin-bottom:24px;">
+          <span class="price-original" style="font-size:22px;">$97</span>
+          <span class="price-main gt" style="font-size:72px;">$10</span>
+          <span class="price-badge">−90%</span>
+        </div>
+        <a href="https://pay.hotmart.com/H105120193G?bid=1774717210699" target="_blank" rel="noopener" class="btn-primary" style="font-size:18px;">🎯 OBTENER MI EBOOK AHORA — $10</a>
+        <div class="trust-row" style="margin-top:16px;">
+          <span class="trust-item">🔒 Pago Seguro</span>
+          <span class="trust-item">📦 Entrega Inmediata</span>
+          <span class="trust-item">↩️ Garantía 30 días</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo gt">PromptMaster</div>
+    <p>© 2026 PromptMaster · Todos los derechos reservados · <a href="#">Privacidad</a> · <a href="#">Términos</a></p>
+  </footer>
+
+  <script>
+    let h = 23, m = 47, s = 59;
+    setInterval(() => {
+      s--;
+      if (s < 0) { s = 59; m--; }
+      if (m < 0) { m = 59; h--; }
+      if (h < 0) { h = 23; m = 59; s = 59; }
+      const el = document.getElementById('countdown');
+      if (el) el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }, 1000);
+  </script>
+</body>
+</html>
